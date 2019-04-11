@@ -153,6 +153,7 @@ public class StaticEnemie : MonoBehaviour
         {
             Instantiate(explosion, transform.position + Vector3.up*2, Quaternion.identity);
             print("muerte matao");
+            EnemyCountController.MatarEnemigo();
             transform.gameObject.SetActive(false);
         }
     }

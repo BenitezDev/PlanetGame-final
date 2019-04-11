@@ -9,9 +9,8 @@ public class WarningController : MonoBehaviour
     [SerializeField] private Animator animWarning;
     [SerializeField] private Text warningText;
 
-    [SerializeField] private string textFuel;
 
-    [SerializeField] private string textAltitude;
+
 
     private void Update()
     {
@@ -25,13 +24,21 @@ public class WarningController : MonoBehaviour
             warningText.text = "";
             animWarning.SetBool("Warning", false);
         }
-        else if(PlayerUI.percentageAltitude <0.40f)
+        else if(PlayerUI.percentageAltitude < 0.40f)
         {
             warningText.text = "";
             animWarning.SetBool("Warning", true);
         }
 
-        
+        if (PlayerUI.percentajeFuel >= 0.5)
+        {
+            animWarning.SetBool("Warning", true);
+        }
+        else
+            animWarning.SetBool("Warning", false);
+
+
+
     }
 
 }

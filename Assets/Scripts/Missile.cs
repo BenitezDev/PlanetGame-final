@@ -19,6 +19,7 @@ public class Missile : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        Destroy(this.gameObject, 10);
     }
 
     void Update()
@@ -56,6 +57,7 @@ public class Missile : MonoBehaviour
 
             makeShake();
             Instantiate(explosion, collision.GetContact(0).point, Quaternion.identity);
+            PlayerHealth.DecrementHealth(10);
 
 
 

@@ -16,26 +16,46 @@ public class EnemyCountController : MonoBehaviour
     private void Awake()
     {
         enemigosVivos = numeroMaximoDeEnemigos;
-        panelFinal = GameObject.Find("NextLevelCanvas");
+        panelFinal = GameObject.Find("Nivel Superado");
         panelFinal.SetActive(false);
-        MatarEnemigo();
+
+
+        contadorEnemigos.text = enemigosVivos.ToString();
     }
+
+    private void Update()
+    {
+        contadorEnemigos.text = enemigosVivos.ToString();
+    }
+
 
     public static void MatarEnemigo()
     {
         enemigosVivos--;
-        ////////// TODO
+        
         if (enemigosVivos <= 0)
         {
-            panelFinal.SetActive(true);
-            Time.timeScale = 0;
-            Screen.lockCursor = false;
+            new EnemyCountController().EndGame();
 
         }
     }
 
+    private void UpdateScore()
+    {
+        contadorEnemigos.text = enemigosVivos.ToString();
+    }
 
 
+    private void EndGame()
+    {
+        Invoke("auxStop",2);
+    }
 
+    private void auxStop()
+    {
+        panelFinal.SetActive(true);
+        Time.timeScale = 0;
+        Screen.lockCursor = false;
+    }
 
 }

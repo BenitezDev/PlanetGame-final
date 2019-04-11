@@ -27,6 +27,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private ShipExplote shipExplote;
 
     private bool naveExplota = false;
+
     private void Awake()
     {
         fuelManager = GetComponent<FuelManager>();
