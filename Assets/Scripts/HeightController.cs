@@ -78,7 +78,6 @@ public class HeightController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(planetTransform.position, minRadioPlaneta);
         Gizmos.DrawWireSphere(planetTransform.position, maxRadioPlaneta);
-        Handles.Label(transform.position, currentTimeOutside.ToString());
     }
 
 
