@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 public class PlayStationReloadGame : MonoBehaviour
 {
@@ -26,6 +26,7 @@ public class PlayStationReloadGame : MonoBehaviour
         Debug.Log(Input.GetAxis("Right Stick Vertical 1"));
 
 
+        Debug.Log(Input.GetAxis("Right Stick Horizontal 1"));
         if (Input.GetButtonDown("Start 1")) UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 }

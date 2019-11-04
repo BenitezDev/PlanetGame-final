@@ -65,6 +65,7 @@ public class PlayerFlightControl : MonoBehaviour
         //	Debug.LogError("(Flight Controls) Thrust input axis not set up! Go to Edit>Project Settings>Input to create a new axis called 'Thrust' so the ship can change speeds.");
         //}
         thrust_exists = true;
+        roll_exists = true;
 		//try {
 		//	Input.GetAxis("Right Stick Horizontal 1");
 		//} catch {
@@ -88,8 +89,8 @@ public class PlayerFlightControl : MonoBehaviour
 		//Clamping the pitch and yaw values, and taking in the roll input.
 		pitch = Mathf.Clamp(distFromVertical, -screen_clamp - DZ, screen_clamp  + DZ) * pitchYaw_strength;
 		yaw = Mathf.Clamp(distFromHorizontal, -screen_clamp - DZ, screen_clamp  + DZ) * pitchYaw_strength;
-		if (roll_exists)
-			roll = (Input.GetAxis("Right Stick Horizontal 1") * -rollSpeedModifier);
+		//if (roll_exists)
+			roll = (Input.GetAxis("Right Stick Horizontal 1")* 5 * -rollSpeedModifier);
 			
 		
 		//Getting the current speed.
@@ -99,7 +100,7 @@ public class PlayerFlightControl : MonoBehaviour
 
         //if (thrust_exists) {
         
-        Debug.Log("Right Stick Horizontal 1");
+        
 
 			if (Input.GetAxis("Right Stick Vertical 1") > 0 && FuelManager.currentFuel > 0) {
 				afterburner_Active = true;

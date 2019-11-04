@@ -18,11 +18,11 @@ public class ShipVisuals : MonoBehaviour
     protected void Update()
     {
         // pulsa W
-        if (Input.GetAxis("Vertical") > 0 && FuelManager.currentFuel > 0)
+        if (Input.GetAxis("Right Stick Vertical 1") > 0 && FuelManager.currentFuel > 0)
         {
             StartBoost();
         }
-        else if (Input.GetAxis("Vertical") <= 0)
+        else if (Input.GetAxis("Right Stick Vertical 1") <= 0)
         {
             StopBoost();
         }

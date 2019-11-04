@@ -28,7 +28,7 @@ public class FuelManager : MonoBehaviour
     private void Update()
     {
         // tocando la W
-        if (Input.GetAxis("Vertical") > 0 && currentFuel > 0)
+        if (Input.GetAxis("Right Stick Vertical 1") > 0 && currentFuel > 0)
         {
             currentFuel -= Time.deltaTime * consumoFuel;
             FuelSlider.fillAmount = currentFuel / 500;
