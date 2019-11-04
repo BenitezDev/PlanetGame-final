@@ -1,49 +1,114 @@
 fileFormatVersion: 2
 guid: d9b7f164c39347a42b588d9b138cd79b
-timeCreated: 1454585318
-licenseType: Store
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: Border_BgLight
-    21300002: Border_NoBG
-    21300004: Ico_Cross
-    21300006: Ico_Search
-    21300008: Ico_Caret
-    21300010: Ico_Star
-    21300012: Ico_Plus
-    21300014: Ico_CrossLarge
-    21300016: Ico_StarFilled
-    21300018: Border_DropdownBG
-    21300020: TriangelTest_TEMP
-    21300022: TEMP123
-    21300024: Circle
-    21300026: Dots
-    21300028: CircleBorder
-    21300030: CircleBorder_BG
-    21300032: BG
-    21300034: Icon_GUN_TEMP
-    21300036: Transparent
-    21300038: Ico_GridView
-    21300040: Ico_ListView
-    21300042: Ico_LB
-    21300044: Ico_RB
-    21300046: Ico_Clock
-    21300048: Ico_Profile
-    21300050: Ico_Bullet_Empty
-    21300052: Ico_Bullet
-    21300054: Rarity_Edge_Wrapper
-    21300056: Ico_Lightningbold
-    21300058: CursorIcon
-    21300060: BoxGlowy
-    21300062: Pointer
-  serializedVersion: 2
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: Border_BgLight
+  - first:
+      213: 21300002
+    second: Border_NoBG
+  - first:
+      213: 21300004
+    second: Ico_Cross
+  - first:
+      213: 21300006
+    second: Ico_Search
+  - first:
+      213: 21300008
+    second: Ico_Caret
+  - first:
+      213: 21300010
+    second: Ico_Star
+  - first:
+      213: 21300012
+    second: Ico_Plus
+  - first:
+      213: 21300014
+    second: Ico_CrossLarge
+  - first:
+      213: 21300016
+    second: Ico_StarFilled
+  - first:
+      213: 21300018
+    second: Border_DropdownBG
+  - first:
+      213: 21300020
+    second: TriangelTest_TEMP
+  - first:
+      213: 21300022
+    second: TEMP123
+  - first:
+      213: 21300024
+    second: Circle
+  - first:
+      213: 21300026
+    second: Dots
+  - first:
+      213: 21300028
+    second: CircleBorder
+  - first:
+      213: 21300030
+    second: CircleBorder_BG
+  - first:
+      213: 21300032
+    second: BG
+  - first:
+      213: 21300034
+    second: Icon_GUN_TEMP
+  - first:
+      213: 21300036
+    second: Transparent
+  - first:
+      213: 21300038
+    second: Ico_GridView
+  - first:
+      213: 21300040
+    second: Ico_ListView
+  - first:
+      213: 21300042
+    second: Ico_LB
+  - first:
+      213: 21300044
+    second: Ico_RB
+  - first:
+      213: 21300046
+    second: Ico_Clock
+  - first:
+      213: 21300048
+    second: Ico_Profile
+  - first:
+      213: 21300050
+    second: Ico_Bullet_Empty
+  - first:
+      213: 21300052
+    second: Ico_Bullet
+  - first:
+      213: 21300054
+    second: Rarity_Edge_Wrapper
+  - first:
+      213: 21300056
+    second: Ico_Lightningbold
+  - first:
+      213: 21300058
+    second: CursorIcon
+  - first:
+      213: 21300060
+    second: BoxGlowy
+  - first:
+      213: 21300062
+    second: Pointer
+  externalObjects: {}
+  serializedVersion: 10
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
+    sRGBTexture: 1
     linearTexture: 0
-    correctGamma: 0
     fadeOut: 0
     borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
     mipMapFadeDistanceStart: 1
     mipMapFadeDistanceEnd: 3
   bumpmap:
@@ -52,37 +117,60 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
-  generateCubemap: 0
+  generateCubemap: 6
   cubemapConvolution: 0
-  cubemapConvolutionSteps: 8
-  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
+    serializedVersion: 2
     filterMode: -1
     aniso: -1
-    mipBias: -1
-    wrapMode: 1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
-  rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
-  buildTargetSettings: []
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: Border_BgLight
+    - serializedVersion: 2
+      name: Border_BgLight
       rect:
         serializedVersion: 2
         x: 1
@@ -93,7 +181,17 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 2, y: 2, z: 2, w: 2}
       outline: []
-    - name: Border_NoBG
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_NoBG
       rect:
         serializedVersion: 2
         x: 12
@@ -104,7 +202,17 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 2, y: 2, z: 2, w: 2}
       outline: []
-    - name: Ico_Cross
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22305410000000000800000000000000
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ico_Cross
       rect:
         serializedVersion: 2
         x: 27
@@ -115,7 +223,17 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Ico_Search
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42305410000000000800000000000000
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ico_Search
       rect:
         serializedVersion: 2
         x: 44
@@ -126,7 +244,17 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Ico_Caret
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62305410000000000800000000000000
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ico_Caret
       rect:
         serializedVersion: 2
         x: 70
@@ -137,7 +265,17 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Ico_Star
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82305410000000000800000000000000
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ico_Star
       rect:
         serializedVersion: 2
         x: 89
@@ -148,7 +286,17 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Ico_Plus
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2305410000000000800000000000000
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ico_Plus
       rect:
         serializedVersion: 2
         x: 114
@@ -159,7 +307,17 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Ico_CrossLarge
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2305410000000000800000000000000
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ico_CrossLarge
       rect:
         serializedVersion: 2
         x: 137
@@ -170,7 +328,17 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Ico_StarFilled
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2305410000000000800000000000000
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ico_StarFilled
       rect:
         serializedVersion: 2
         x: 89
@@ -181,7 +349,17 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Border_DropdownBG
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03305410000000000800000000000000
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_DropdownBG
       rect:
         serializedVersion: 2
         x: 1
@@ -192,7 +370,17 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 2, y: 2, z: 2, w: 2}
       outline: []
-    - name: TriangelTest_TEMP
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23305410000000000800000000000000
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TriangelTest_TEMP
       rect:
         serializedVersion: 2
         x: 23
@@ -202,16 +390,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -51.5, y: 42}
-        - {x: -51.5, y: 33}
-        - {x: -48.5, y: 22}
-        - {x: -10.5, y: -42}
-        - {x: 10.5, y: -42}
-        - {x: 22.5, y: -37}
-        - {x: 51.5, y: 35}
-        - {x: 51.5, y: 42}
-    - name: TEMP123
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43305410000000000800000000000000
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TEMP123
       rect:
         serializedVersion: 2
         x: 151
@@ -221,23 +411,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -46.5, y: 42}
-        - {x: -46.5, y: 31}
-        - {x: -45.5, y: 26}
-        - {x: -1.5, y: -42}
-        - {x: 5.5, y: -42}
-        - {x: 12.5, y: -35}
-        - {x: 12.5, y: -19}
-        - {x: -19.5, y: 42}
-      - - {x: 37.5, y: 38}
-        - {x: 7.5, y: -10}
-        - {x: 7.5, y: -19}
-        - {x: 10.5, y: -25}
-        - {x: 15.5, y: -25}
-        - {x: 46.5, y: 26}
-        - {x: 46.5, y: 38}
-    - name: Dots
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63305410000000000800000000000000
+      internalID: 21300022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dots
       rect:
         serializedVersion: 2
         x: 172
@@ -248,7 +433,17 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: CircleBorder
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3305410000000000800000000000000
+      internalID: 21300026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleBorder
       rect:
         serializedVersion: 2
         x: 3
@@ -259,7 +454,17 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: CircleBorder_BG
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3305410000000000800000000000000
+      internalID: 21300028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleBorder_BG
       rect:
         serializedVersion: 2
         x: 38
@@ -269,21 +474,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 12, y: 23}
-        - {x: -12, y: 23}
-        - {x: -15, y: 21}
-        - {x: -21, y: 15}
-        - {x: -23, y: 12}
-        - {x: -23, y: -12}
-        - {x: -21, y: -15}
-        - {x: -15, y: -21}
-        - {x: -12, y: -23}
-        - {x: 12, y: -23}
-        - {x: 23, y: -17}
-        - {x: 23, y: 14}
-        - {x: 15, y: 21}
-    - name: BG
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3305410000000000800000000000000
+      internalID: 21300030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG
       rect:
         serializedVersion: 2
         x: 924
@@ -293,12 +495,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -50, y: 50}
-        - {x: -50, y: -50}
-        - {x: 50, y: -50}
-        - {x: 50, y: 50}
-    - name: Transparent
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04305410000000000800000000000000
+      internalID: 21300032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Transparent
       rect:
         serializedVersion: 2
         x: 823
@@ -309,7 +517,17 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Ico_GridView
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44305410000000000800000000000000
+      internalID: 21300036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ico_GridView
       rect:
         serializedVersion: 2
         x: 93
@@ -320,7 +538,17 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Ico_ListView
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64305410000000000800000000000000
+      internalID: 21300038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ico_ListView
       rect:
         serializedVersion: 2
         x: 120
@@ -331,7 +559,17 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Ico_LB
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84305410000000000800000000000000
+      internalID: 21300040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ico_LB
       rect:
         serializedVersion: 2
         x: 119
@@ -342,7 +580,17 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Ico_RB
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4305410000000000800000000000000
+      internalID: 21300042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ico_RB
       rect:
         serializedVersion: 2
         x: 162
@@ -353,7 +601,17 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Ico_Profile
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4305410000000000800000000000000
+      internalID: 21300044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ico_Profile
       rect:
         serializedVersion: 2
         x: 204
@@ -363,15 +621,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -10, y: 16}
-        - {x: -16, y: 14}
-        - {x: -16, y: -16}
-        - {x: 15, y: -16}
-        - {x: 16, y: -13}
-        - {x: 16, y: 13}
-        - {x: 11, y: 16}
-    - name: Ico_Clock
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05305410000000000800000000000000
+      internalID: 21300048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ico_Clock
       rect:
         serializedVersion: 2
         x: 239
@@ -381,28 +642,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 15, y: 16}
-        - {x: -14, y: 16}
-        - {x: -16, y: 15}
-        - {x: -16, y: -16}
-        - {x: 15, y: -16}
-        - {x: 16, y: -13}
-        - {x: 16, y: 13}
-      - - {x: -7, y: 7}
-        - {x: 2, y: 10}
-        - {x: 10, y: -3}
-        - {x: 2, y: -11}
-      - - {x: 1, y: 9}
-        - {x: -2, y: 9}
-        - {x: -4, y: 7}
-        - {x: -4, y: -4}
-        - {x: 3, y: -9}
-        - {x: 8, y: -9}
-        - {x: 10, y: -6}
-        - {x: 10, y: -2}
-        - {x: 3, y: 7}
-    - name: Ico_Bullet_Empty
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4305410000000000800000000000000
+      internalID: 21300046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ico_Bullet_Empty
       rect:
         serializedVersion: 2
         x: 156
@@ -413,7 +664,17 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Ico_Bullet
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25305410000000000800000000000000
+      internalID: 21300050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ico_Bullet
       rect:
         serializedVersion: 2
         x: 184
@@ -424,7 +685,17 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Rarity_Edge_Wrapper
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45305410000000000800000000000000
+      internalID: 21300052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rarity_Edge_Wrapper
       rect:
         serializedVersion: 2
         x: 205
@@ -435,7 +706,17 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Ico_Lightningbold
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65305410000000000800000000000000
+      internalID: 21300054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ico_Lightningbold
       rect:
         serializedVersion: 2
         x: 229
@@ -446,7 +727,17 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: BoxGlowy
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85305410000000000800000000000000
+      internalID: 21300056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoxGlowy
       rect:
         serializedVersion: 2
         x: 310
@@ -456,14 +747,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 30, y: 30, z: 30, w: 30}
-      outline:
-      - - {x: -31, y: 34}
-        - {x: -34, y: 29}
-        - {x: -34, y: -30}
-        - {x: -30, y: -34}
-        - {x: 34, y: -34}
-        - {x: 34, y: 34}
-    - name: Pointer
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5305410000000000800000000000000
+      internalID: 21300060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pointer
       rect:
         serializedVersion: 2
         x: 408
@@ -474,8 +769,28 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5305410000000000800000000000000
+      internalID: 21300062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
   spritePackingTag: 
+  pSDRemoveMatte: 1
+  pSDShowRemoveMatteOption: 1
   userData: 
   assetBundleName: 
   assetBundleVariant: 
