@@ -20,8 +20,12 @@ public class MachineGun : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetButtonDown("L1 1")) Debug.Log("JAJAJAJAJ");
+
+
         currentTime += Time.deltaTime;
-        if(Input.GetButton("Fire1"))
+
+        if(Input.GetAxis("L2 1") > 0 || Input.GetAxis("L2 2") > 0 || Input.GetButtonDown("L1 1") || Input.GetButtonDown("L2 1") || Input.GetKeyDown(KeyCode.A))
         {
             
             Ray ray = new Ray(cam.transform.position, cam.transform.forward);

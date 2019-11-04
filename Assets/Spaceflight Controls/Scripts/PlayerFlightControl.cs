@@ -57,20 +57,20 @@ public class PlayerFlightControl : MonoBehaviour
 		
 		roll = 0; //Setting this equal to 0 here as a failsafe in case the roll axis is not set up.
 
-		//Error handling, in case one of the inputs aren't set up.
-		try {
-			Input.GetAxis("Thrust");
-		} catch {
-			thrust_exists = false;
-			Debug.LogError("(Flight Controls) Thrust input axis not set up! Go to Edit>Project Settings>Input to create a new axis called 'Thrust' so the ship can change speeds.");
-		}
-		
-		try {
-			Input.GetAxis("Roll");
-		} catch {
-			roll_exists = false;
-			Debug.LogError("(Flight Controls) Roll input axis not set up! Go to Edit>Project Settings>Input to create a new axis called 'Roll' so the ship can roll.");
-		}
+        //Error handling, in case one of the inputs aren't set up.
+        //try {
+        //	Input.GetAxis("Right Stick Vertical 1");
+        //} catch {
+        //	thrust_exists = false;
+        //	Debug.LogError("(Flight Controls) Thrust input axis not set up! Go to Edit>Project Settings>Input to create a new axis called 'Thrust' so the ship can change speeds.");
+        //}
+        thrust_exists = true;
+		//try {
+		//	Input.GetAxis("Right Stick Horizontal 1");
+		//} catch {
+		//	roll_exists = false;
+		//	Debug.LogError("(Flight Controls) Roll input axis not set up! Go to Edit>Project Settings>Input to create a new axis called 'Roll' so the ship can roll.");
+		//}
 		
 	}
 	
@@ -89,21 +89,24 @@ public class PlayerFlightControl : MonoBehaviour
 		pitch = Mathf.Clamp(distFromVertical, -screen_clamp - DZ, screen_clamp  + DZ) * pitchYaw_strength;
 		yaw = Mathf.Clamp(distFromHorizontal, -screen_clamp - DZ, screen_clamp  + DZ) * pitchYaw_strength;
 		if (roll_exists)
-			roll = (Input.GetAxis("Roll") * -rollSpeedModifier);
+			roll = (Input.GetAxis("Right Stick Horizontal 1") * -rollSpeedModifier);
 			
 		
 		//Getting the current speed.
 		currentMag = GetComponent<Rigidbody>().velocity.magnitude;
-		
-		//If input on the thrust axis is positive, activate afterburners.
 
-		if (thrust_exists) {
-			if (Input.GetAxis("Thrust") > 0 && FuelManager.currentFuel > 0) {
+        //If input on the thrust axis is positive, activate afterburners.
+
+        //if (thrust_exists) {
+        
+        Debug.Log("Right Stick Horizontal 1");
+
+			if (Input.GetAxis("Right Stick Vertical 1") > 0 && FuelManager.currentFuel > 0) {
 				afterburner_Active = true;
 				slow_Active = false;
 				currentMag = Mathf.Lerp(currentMag, afterburner_speed, thrust_transition_speed * Time.deltaTime);
 				
-			} else if (Input.GetAxis("Thrust") < 0) { 	//If input on the thrust axis is negatve, activate brakes.
+			} else if (Input.GetAxis("Right Stick Vertical 1") < 0) { 	//If input on the thrust axis is negatve, activate brakes.
 				slow_Active = true;
 				afterburner_Active = false;
 				currentMag = Mathf.Lerp(currentMag, slow_speed, thrust_transition_speed * Time.deltaTime);
@@ -114,7 +117,7 @@ public class PlayerFlightControl : MonoBehaviour
 				currentMag = Mathf.Lerp(currentMag, speed, thrust_transition_speed * Time.deltaTime);
 				
 			}
-		}
+		//}
 				
 		//Apply all these values to the rigidbody on the container.
 		GetComponent<Rigidbody>().AddRelativeTorque(
@@ -132,8 +135,8 @@ public class PlayerFlightControl : MonoBehaviour
 		
 	void updateCursorPosition() {
 
-		mousePos = CustomPointer.pointerPosition;
-		
+        //mousePos = CustomPointer.pointerPosition;
+        mousePos = PlayStationReloadGame.tr.position;
 		//Calculate distances from the center of the screen.
 		float distV = Vector2.Distance(mousePos, new Vector2(mousePos.x, Screen.height / 2));
 		float distH = Vector2.Distance(mousePos, new Vector2(Screen.width / 2, mousePos.y));

@@ -15,6 +15,7 @@ public class MountainChecker : MonoBehaviour
             GetComponent<ShipExplote>().ExplotarNave();
             Screen.lockCursor = false;
             PlayerHealth.panelDemuerte.SetActive(true);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
     }
 

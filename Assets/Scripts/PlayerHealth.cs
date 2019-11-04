@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-   public static float health = 100f;
-   public static GameObject panelDemuerte;
-   public static GameObject UI;
+    public static float health = 100f;
+    public static GameObject panelDemuerte;
+    public static GameObject UI;
 
-   [SerializeField] private GameObject PSexplosion;
+    [SerializeField] private GameObject PSexplosion;
 
-   private static ShipExplote shipExplote;
+    private static ShipExplote shipExplote;
 
-   public static bool alive = true;
+    public static bool alive = true;
 
     private void Awake()
     {
@@ -31,26 +31,30 @@ public class PlayerHealth : MonoBehaviour
 
 
     public static void DecrementHealth(float dmg)
-   {
-       var aux = health - dmg;
+    {
+        var aux = health - dmg;
 
-       if (aux >= 0)
-       {
-           health = aux;
-       }
-       else
-       {
-           // has muerto:
-           UI.SetActive(false);
-           panelDemuerte.SetActive(true);
-           alive = false;
-           shipExplote.ExplotarNave();
-           Screen.lockCursor = false;
-           panelDemuerte.SetActive(true);
+        if (aux >= 0)
+        {
+            health = aux;
+        }
+        else
+        {
+            // has muerto:
+            UI.SetActive(false);
+            panelDemuerte.SetActive(true);
+            alive = false;
+            shipExplote.ExplotarNave();
+            Screen.lockCursor = false;
+            panelDemuerte.SetActive(true);
+
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
             //new PlayerHealth().CreateExplosion();
-           
+
         }
     }
+  
+    
 
     //private void CreateExplosion()
     //{
