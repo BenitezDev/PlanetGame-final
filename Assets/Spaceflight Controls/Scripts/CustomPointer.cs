@@ -63,33 +63,36 @@ public class CustomPointer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		//if (use_mouse_input) {
-		
-		//	float x_axis = Input.GetAxis("Mouse X");
-		//	float y_axis = Input.GetAxis("Mouse Y");
-		
-		//	if (invert_y_axis)
-		//		y_axis = -y_axis;
-		
-		//	//Add the input to the pointer's position
-		//	pointerPosition += new Vector2(x_axis * mouse_sensitivity_modifier,
-		//	                               y_axis * mouse_sensitivity_modifier);
-											
-			
-		//} else
-  //      if (use_gamepad_input) {
-			
-		//	float x_axis = Input.GetAxis("Horizontal");
-		//	float y_axis = Input.GetAxis("Vertical");
-			
-		//	if (invert_y_axis)
-		//		y_axis = -y_axis;
-			
-		
-		//	pointerPosition += new Vector2(x_axis * thumbstick_speed_modifier * Mathf.Pow(Input.GetAxis("Horizontal"), 2),
-		//		                               y_axis * thumbstick_speed_modifier * Mathf.Pow(Input.GetAxis("Vertical"), 2));
+        if (use_mouse_input)
+        {
 
-		//}
+            float x_axis = Input.GetAxis("Mouse X");
+            float y_axis = Input.GetAxis("Mouse Y");
+
+            if (invert_y_axis)
+                y_axis = -y_axis;
+
+            //Add the input to the pointer's position
+            pointerPosition += new Vector2(x_axis * mouse_sensitivity_modifier,
+                                           y_axis * mouse_sensitivity_modifier);
+
+
+        }
+        else
+        if (use_gamepad_input)
+        {
+
+            float x_axis = Input.GetAxis("Horizontal");
+            float y_axis = Input.GetAxis("Vertical");
+
+            if (invert_y_axis)
+                y_axis = -y_axis;
+
+
+            pointerPosition += new Vector2(x_axis * thumbstick_speed_modifier * Mathf.Pow(Input.GetAxis("Horizontal"), 2),
+                                               y_axis * thumbstick_speed_modifier * Mathf.Pow(Input.GetAxis("Vertical"), 2));
+
+        }
         /* else if (use_accelerometer_input) {
 			//WARNING: UNTESTED.
 			//This /should/ be fairly close to working, though.
@@ -106,27 +109,31 @@ public class CustomPointer : MonoBehaviour {
 		
 		
 		}*/
-		
-		//If the pointer returns to the center of the screen and it's not in the deadzone...
-		//if (pointer_returns_to_center && !deadzone_rect.Contains(pointerPosition)) {
-		//	//If there's no input and instant snapping is on...
-		//	if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0 && instant_snapping) {
-		//		pointerPosition = new Vector2 (Screen.width / 2, Screen.height / 2); //Place pointer at the center.
-			
-			
-		//	} else {
-		//		//Move pointer to the center (Will stop when it hits the deadzone)
-		//		pointerPosition.x = Mathf.Lerp (pointerPosition.x, Screen.width / 2, center_speed * Time.deltaTime);
-		//		pointerPosition.y = Mathf.Lerp (pointerPosition.y, Screen.height / 2, center_speed * Time.deltaTime);
-		//	}
-		//}
-		
-		////Keep the pointer within the bounds of the screen.
-		//pointerPosition.x = Mathf.Clamp (pointerPosition.x, 0, Screen.width);
-		//pointerPosition.y = Mathf.Clamp (pointerPosition.y, 0, Screen.height);
-		
-	
-	}
+
+        //If the pointer returns to the center of the screen and it's not in the deadzone...
+        if (pointer_returns_to_center && !deadzone_rect.Contains(pointerPosition))
+        {
+            //If there's no input and instant snapping is on...
+            if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0 && instant_snapping)
+            {
+                pointerPosition = new Vector2(Screen.width / 2, Screen.height / 2); //Place pointer at the center.
+
+
+            }
+            else
+            {
+                //Move pointer to the center (Will stop when it hits the deadzone)
+                pointerPosition.x = Mathf.Lerp(pointerPosition.x, Screen.width / 2, center_speed * Time.deltaTime);
+                pointerPosition.y = Mathf.Lerp(pointerPosition.y, Screen.height / 2, center_speed * Time.deltaTime);
+            }
+        }
+
+        //Keep the pointer within the bounds of the screen.
+        pointerPosition.x = Mathf.Clamp(pointerPosition.x, 0, Screen.width);
+        pointerPosition.y = Mathf.Clamp(pointerPosition.y, 0, Screen.height);
+
+
+    }
 	
 	
 	

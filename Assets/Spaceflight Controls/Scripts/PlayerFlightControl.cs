@@ -47,10 +47,17 @@ public class PlayerFlightControl : MonoBehaviour
 	
 	bool thrust_exists = true;
 	bool roll_exists = true;
-	
-	//---------------------------------------------------------------------------------
-	
-	void Start() {
+
+    Rigidbody rb;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    //---------------------------------------------------------------------------------
+
+    void Start() {
 	
 		mousePos = new Vector2(0,0);	
 		DZ = CustomPointer.instance.deadzone_radius;
@@ -65,15 +72,18 @@ public class PlayerFlightControl : MonoBehaviour
         //	Debug.LogError("(Flight Controls) Thrust input axis not set up! Go to Edit>Project Settings>Input to create a new axis called 'Thrust' so the ship can change speeds.");
         //}
         thrust_exists = true;
-        roll_exists = true;
-		//try {
-		//	Input.GetAxis("Right Stick Horizontal 1");
-		//} catch {
-		//	roll_exists = false;
-		//	Debug.LogError("(Flight Controls) Roll input axis not set up! Go to Edit>Project Settings>Input to create a new axis called 'Roll' so the ship can roll.");
-		//}
-		
-	}
+        //roll_exists = true;
+        try
+        {
+            Input.GetAxis("Right Stick Horizontal 1");
+        }
+        catch
+        {
+            roll_exists = false;
+            //Debug.LogError("(Flight Controls) Roll input axis not set up! Go to Edit>Project Settings>Input to create a new axis called 'Roll' so the ship can roll.");
+        }
+
+    }
 	
 	
 	void FixedUpdate () {
@@ -89,12 +99,14 @@ public class PlayerFlightControl : MonoBehaviour
 		//Clamping the pitch and yaw values, and taking in the roll input.
 		pitch = Mathf.Clamp(distFromVertical, -screen_clamp - DZ, screen_clamp  + DZ) * pitchYaw_strength;
 		yaw = Mathf.Clamp(distFromHorizontal, -screen_clamp - DZ, screen_clamp  + DZ) * pitchYaw_strength;
-		//if (roll_exists)
-			roll = (Input.GetAxis("Right Stick Horizontal 1")* 5 * -rollSpeedModifier);
-			
-		
-		//Getting the current speed.
-		currentMag = GetComponent<Rigidbody>().velocity.magnitude;
+
+		// ALTERNAR
+		//roll = (Input.GetAxis("Right Stick Horizontal 1") * 5 * -rollSpeedModifier);
+        roll = (Input.GetAxis("Roll") * -rollSpeedModifier);
+
+
+        //Getting the current speed.
+        currentMag =rb.velocity.magnitude;
 
         //If input on the thrust axis is positive, activate afterburners.
 
@@ -102,12 +114,13 @@ public class PlayerFlightControl : MonoBehaviour
         
         
 
-			if (Input.GetAxis("Right Stick Vertical 1") > 0 && FuelManager.currentFuel > 0) {
+			if ((Input.GetAxis("Right Stick Vertical 1") > 0|| Input.GetAxis("Thrust") > 0)
+                && FuelManager.currentFuel > 0) {
 				afterburner_Active = true;
 				slow_Active = false;
 				currentMag = Mathf.Lerp(currentMag, afterburner_speed, thrust_transition_speed * Time.deltaTime);
 				
-			} else if (Input.GetAxis("Right Stick Vertical 1") < 0) { 	//If input on the thrust axis is negatve, activate brakes.
+			} else if (Input.GetAxis("Right Stick Vertical 1") < 0 || Input.GetAxis("Thrust") < 0) { 	//If input on the thrust axis is negatve, activate brakes.
 				slow_Active = true;
 				afterburner_Active = false;
 				currentMag = Mathf.Lerp(currentMag, slow_speed, thrust_transition_speed * Time.deltaTime);
@@ -121,12 +134,12 @@ public class PlayerFlightControl : MonoBehaviour
 		//}
 				
 		//Apply all these values to the rigidbody on the container.
-		GetComponent<Rigidbody>().AddRelativeTorque(
+		rb.AddRelativeTorque(
 			(pitch * turnspeed * Time.deltaTime),
 			(yaw * turnspeed * Time.deltaTime),
 			(roll * turnspeed *  (rollSpeedModifier / 2) * Time.deltaTime));
 		
-		GetComponent<Rigidbody>().velocity = transform.forward * currentMag; //Apply speed
+		rb.velocity = transform.forward * currentMag; //Apply speed
 		
 		if (use_banking)
 			updateBanking(); //Calculate banking.
@@ -136,8 +149,11 @@ public class PlayerFlightControl : MonoBehaviour
 		
 	void updateCursorPosition() {
 
-        //mousePos = CustomPointer.pointerPosition;
-        mousePos = PlayStationReloadGame.tr.position;
+        // ALTERNAAARRRR
+        mousePos = CustomPointer.pointerPosition;
+        //mousePos = PlayStationReloadGame.tr.position;
+
+
 		//Calculate distances from the center of the screen.
 		float distV = Vector2.Distance(mousePos, new Vector2(mousePos.x, Screen.height / 2));
 		float distH = Vector2.Distance(mousePos, new Vector2(Screen.width / 2, mousePos.y));
