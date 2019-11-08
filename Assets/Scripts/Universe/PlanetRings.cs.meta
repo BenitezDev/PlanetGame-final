@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 36f8467a39e3745ba8bcf40a98e1cde8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - planet: {instanceID: 0}
+  - cilinder: {instanceID: 0}
+  - asteroids: {fileID: 8062261511499349095, guid: fdd8b6f8b70104ebb9a775c591f00081,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
