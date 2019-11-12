@@ -17,7 +17,6 @@ public class Asteroid : MonoBehaviour
 
     private void Update()
     {
-
         transform.RotateAround(planet.position, planet.up, speed * Time.deltaTime);
     }
 }
