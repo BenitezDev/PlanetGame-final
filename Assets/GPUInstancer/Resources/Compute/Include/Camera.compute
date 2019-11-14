@@ -1,0 +1,230 @@
+﻿#ifndef __camera_hlsl_
+#define __camera_hlsl_
+
+RWStructuredBuffer<float4x4> gpuiInstanceData;
+RWStructuredBuffer<uint4> gpuiInstanceLODData; // lodNo - shadowLodNo - cfLodNo - cfLevel
+
+uniform float4x4 mvpMartix;
+uniform float3 boundsCenter;
+uniform float3 boundsExtents;
+uniform bool isFrustumCulling;
+uniform float maxDistance;
+uniform float3 camPos;
+uniform float frustumOffset;
+uniform float minCullingDistance;
+uniform uint bufferSize;
+
+uniform float shadowDistance;
+uniform uint4x4 shadowLODMap;
+
+uniform float4x4 lodSizes;
+uniform float4x4 lodCFSizes;
+uniform uint lodCount;
+uniform float halfAngle;
+uniform float deltaTime;
+uniform bool animateCrossFade;
+uniform bool cullShadows;
+
+uniform bool isOcclusionCulling;
+uniform float2 hiZTxtrSize;
+uniform Texture2D<float4> hiZMap;
+uniform SamplerState sampler_hiZMap; // variable name is recognized by the compiler to reference hiZMap
+
+bool IsCulled(in float4x4 objectTransformMatrix)
+{   
+    if (!isFrustumCulling && !isOcclusionCulling)
+        return false;
+
+    bool isCulled = false;
+
+    // Calculate clip space matrix
+    float4x4 to_clip_space_mat = mul(mvpMartix, objectTransformMatrix);
+    
+    float3 Min = boundsCenter - boundsExtents;
+    float3 Max = boundsCenter + boundsExtents;
+
+	// Transform all 8 corner points of the object bounding box to clip space
+    float4 BoundingBox[8];
+    BoundingBox[0] = mul(to_clip_space_mat, float4(Min.x, Max.y, Min.z, 1.0));
+    BoundingBox[1] = mul(to_clip_space_mat, float4(Min.x, Max.y, Max.z, 1.0));
+    BoundingBox[2] = mul(to_clip_space_mat, float4(Max.x, Max.y, Max.z, 1.0));
+    BoundingBox[3] = mul(to_clip_space_mat, float4(Max.x, Max.y, Min.z, 1.0));
+    BoundingBox[4] = mul(to_clip_space_mat, float4(Max.x, Min.y, Min.z, 1.0));
+    BoundingBox[5] = mul(to_clip_space_mat, float4(Max.x, Min.y, Max.z, 1.0));
+    BoundingBox[6] = mul(to_clip_space_mat, float4(Min.x, Min.y, Max.z, 1.0));
+    BoundingBox[7] = mul(to_clip_space_mat, float4(Min.x, Min.y, Min.z, 1.0));
+
+    // OBB Frustum Culling
+    if (isFrustumCulling)
+    {
+        // Test all 8 points with both positive and negative planes
+        for (int i = 0; i < 3; i++)
+        {
+            // cull if outside positive plane:
+            isCulled = isCulled ||
+			(BoundingBox[0][i] > BoundingBox[0].w + frustumOffset &&
+			BoundingBox[1][i] > BoundingBox[1].w + frustumOffset &&
+			BoundingBox[2][i] > BoundingBox[2].w + frustumOffset &&
+			BoundingBox[3][i] > BoundingBox[3].w + frustumOffset &&
+			BoundingBox[4][i] > BoundingBox[4].w + frustumOffset &&
+			BoundingBox[5][i] > BoundingBox[5].w + frustumOffset &&
+			BoundingBox[6][i] > BoundingBox[6].w + frustumOffset &&
+			BoundingBox[7][i] > BoundingBox[7].w + frustumOffset);
+
+            // cull if outside negative plane:
+            isCulled = isCulled ||
+			(BoundingBox[0][i] < -BoundingBox[0].w - frustumOffset &&
+			BoundingBox[1][i] < -BoundingBox[1].w - frustumOffset &&
+			BoundingBox[2][i] < -BoundingBox[2].w - frustumOffset &&
+			BoundingBox[3][i] < -BoundingBox[3].w - frustumOffset &&
+			BoundingBox[4][i] < -BoundingBox[4].w - frustumOffset &&
+			BoundingBox[5][i] < -BoundingBox[5].w - frustumOffset &&
+			BoundingBox[6][i] < -BoundingBox[6].w - frustumOffset &&
+			BoundingBox[7][i] < -BoundingBox[7].w - frustumOffset);
+        }
+    }
+    
+    // Hierarchical Z-Buffer Occlusion Culling      
+    
+    if (!isCulled && isOcclusionCulling)
+    {
+        // NOTE: for Direct3D, the clipping space z coordinate ranges from 0 to w and for OpenGL, it ranges from -w to w.
+        // Also, Depth value is reversed in between. Thus the depth calculations differ for each, but the difference is taken care of in the blit shader.
+        
+        for (int i = 0; i < 8; i++)
+            BoundingBox[i].xyz /= BoundingBox[i].w;
+
+        float2 BoundingRect[2];
+
+        BoundingRect[0].x = min(min(min(BoundingBox[0].x, BoundingBox[1].x),
+								  min(BoundingBox[2].x, BoundingBox[3].x)),
+							 min(min(BoundingBox[4].x, BoundingBox[5].x),
+								  min(BoundingBox[6].x, BoundingBox[7].x))) / 2.0 + 0.5;
+        BoundingRect[0].y = min(min(min(BoundingBox[0].y, BoundingBox[1].y),
+								  min(BoundingBox[2].y, BoundingBox[3].y)),
+							 min(min(BoundingBox[4].y, BoundingBox[5].y),
+								  min(BoundingBox[6].y, BoundingBox[7].y))) / 2.0 + 0.5;
+        BoundingRect[1].x = max(max(max(BoundingBox[0].x, BoundingBox[1].x),
+								  max(BoundingBox[2].x, BoundingBox[3].x)),
+							 max(max(BoundingBox[4].x, BoundingBox[5].x),
+								  max(BoundingBox[6].x, BoundingBox[7].x))) / 2.0 + 0.5;
+        BoundingRect[1].y = max(max(max(BoundingBox[0].y, BoundingBox[1].y),
+								  max(BoundingBox[2].y, BoundingBox[3].y)),
+							 max(max(BoundingBox[4].y, BoundingBox[5].y),
+                                  max(BoundingBox[6].y, BoundingBox[7].y))) / 2.0 + 0.5;
+
+        float InstanceDepth = min(min(min(BoundingBox[0].z, BoundingBox[1].z),
+									min(BoundingBox[2].z, BoundingBox[3].z)),
+							   min(min(BoundingBox[4].z, BoundingBox[5].z),
+									min(BoundingBox[6].z, BoundingBox[7].z)));
+        
+        // Calculate the bounding rectangle size in viewport coordinates
+        float ViewSizeX = (BoundingRect[1].x - BoundingRect[0].x) * hiZTxtrSize.x;
+        float ViewSizeY = (BoundingRect[1].y - BoundingRect[0].y) * hiZTxtrSize.y;
+        
+	    // Calculate the texture LOD used for lookup in the depth buffer texture
+        float LOD = ceil(log2(max(ViewSizeX, ViewSizeY) / 2.0));
+	
+	    // Fetch the depth texture using explicit LOD lookups
+        float4 Samples;
+        Samples.x = 1 - hiZMap.SampleLevel(sampler_hiZMap, float2(BoundingRect[0].x, BoundingRect[0].y), LOD).r;
+        Samples.y = 1 - hiZMap.SampleLevel(sampler_hiZMap, float2(BoundingRect[0].x, BoundingRect[1].y), LOD).r;
+        Samples.z = 1 - hiZMap.SampleLevel(sampler_hiZMap, float2(BoundingRect[1].x, BoundingRect[1].y), LOD).r;
+        Samples.w = 1 - hiZMap.SampleLevel(sampler_hiZMap, float2(BoundingRect[1].x, BoundingRect[0].y), LOD).r;
+        float middleSample = 1 - hiZMap.SampleLevel(sampler_hiZMap, float2(((BoundingRect[1].x - BoundingRect[0].x) / 2.0) + BoundingRect[0].x, ((BoundingRect[1].y - BoundingRect[0].y) / 2.0) + BoundingRect[0].y), LOD).r;
+        float MaxDepth = max(max(max(Samples.x, Samples.y), max(Samples.z, Samples.w)), middleSample);
+        //float MaxDepth = max(max(Samples.x, Samples.y), max(Samples.z, Samples.w));
+
+        isCulled = InstanceDepth > MaxDepth;
+    }
+
+    return isCulled;
+}
+
+
+inline bool IsAppending(uint3 id, out float dist, out bool culled, out float maxViewSize)
+{
+    dist = 0;
+    culled = false;
+    maxViewSize = 0;
+    
+    // Calculate buffer data and cull if instance exceeds buffer limit
+    if (id.x >= bufferSize)
+        return false;
+    
+    float3 scale = float3(length(gpuiInstanceData[id.x]._11_12_13), length(gpuiInstanceData[id.x]._21_22_23), length(gpuiInstanceData[id.x]._31_32_33));
+    
+    // Cull if scale is zero    
+    if (scale.x == 0 || scale.y == 0 || scale.z == 0)
+        return false;
+    
+    // Test for distance culling 
+    dist = abs(distance(gpuiInstanceData[id.x]._14_24_34, camPos));
+    if (dist >= maxDistance)
+        return false;
+    
+	// Test for frustum and/or occlusion culling.
+    if (dist >= minCullingDistance)
+        culled = IsCulled(gpuiInstanceData[id.x]);
+    
+    maxViewSize = max(max(boundsExtents.x * scale.x, boundsExtents.y * scale.y), boundsExtents.z * scale.z) / (dist * halfAngle * 2);
+
+    return true;
+}
+
+inline void CalculateLODNo(float size, float distance, bool isCulled, out uint lodNo, out uint shadowLodNo)
+{
+    lodNo = 9;
+    shadowLodNo = 9;
+    for (uint i = 0; i < lodCount; i++)
+    {
+        if (size > lodSizes[i / 4][i % 4])
+        {
+            if (!isCulled)
+                lodNo = i;
+            if (distance < shadowDistance && (!cullShadows || !isCulled))
+                shadowLodNo = shadowLODMap[i / 4][i % 4];
+            break;
+        }
+    }
+}
+
+inline void CalculateCFLODNo(float size, uint lodNo, out uint cfLodNo, out uint fadeLevel)
+{
+    cfLodNo = 9;
+    fadeLevel = 0;
+
+    uint row = lodNo / 4;
+    uint column = lodNo % 4;
+    float fadeAmount;
+    
+    if (size < lodCFSizes[row][column])
+    {
+        fadeAmount = (lodCFSizes[row][column] - size) / (lodCFSizes[row][column] - lodSizes[row][column]);
+        fadeLevel = 15 - floor(fadeAmount * fadeAmount * 15.0f);
+        if (fadeLevel == 8)
+            fadeLevel++;
+        if (fadeLevel < 15)
+            cfLodNo = lodNo + 1;
+    }
+}
+
+inline void CalculateCFLODNoAnimate(uint oldLodNo, uint lodNo, inout uint cfLodNo, inout uint fadeLevel)
+{
+    if (oldLodNo < 9 && lodNo < 9 && oldLodNo != lodNo)
+    {
+        fadeLevel = 100;
+        cfLodNo = oldLodNo;
+    }
+    else if (fadeLevel > 0)
+    {
+        fadeLevel += uint(deltaTime * 2500) + 1;
+    }
+
+    if (fadeLevel < 100 || fadeLevel >= 1500)
+    {
+        cfLodNo = 9;
+        fadeLevel = 0;
+    }
+}
+#endif

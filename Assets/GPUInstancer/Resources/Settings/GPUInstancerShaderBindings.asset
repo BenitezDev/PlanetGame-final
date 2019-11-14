@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90d8588b9b4d4e344b3c6c8da8806a1c, type: 3}
+  m_Name: GPUInstancerShaderBindings
+  m_EditorClassIdentifier: 
+  shaderInstances:
+  - name: GPUInstancer/AsteroidHaze
+    instancedShader: {fileID: 4800000, guid: a1fe6b00539636f49bae5f911c8ccc55, type: 3}
+    modifiedDate: 11/13/2019 13:12:25.148
+    isOriginalInstanced: 1
+  - name: Lightweight Render Pipeline/Lit
+    instancedShader: {fileID: 4800000, guid: 6dac5c24f5f631f43858b8090fc90e20, type: 3}
+    modifiedDate: 11/13/2019 13:25:06.160
+    isOriginalInstanced: 0
