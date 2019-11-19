@@ -23,10 +23,7 @@ public class PlayStationReloadGame : MonoBehaviour
 
         tr.position = new Vector3(h*speed + Screen.width / 2, v*speed + +Screen.height / 2, 0);
 
-        Debug.Log(Input.GetAxis("Right Stick Vertical 1"));
-
-
-        Debug.Log(Input.GetAxis("Right Stick Horizontal 1"));
+      
         if (Input.GetButtonDown("Start 1")) UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 }

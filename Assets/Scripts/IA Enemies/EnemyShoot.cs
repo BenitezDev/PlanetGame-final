@@ -6,6 +6,9 @@ public class EnemyShoot : MonoBehaviour
 {
     private bool alive = true;
 
+    [SerializeField]
+    bool shooting = false;
+
     [SerializeField] private float firingRate = 0.2f;
     [SerializeField] private float damage = 1f;
 
@@ -17,17 +20,16 @@ public class EnemyShoot : MonoBehaviour
     [SerializeField] private float cannonRotationSpeed = 1f;
     [SerializeField] private Transform cannonPivot;
 
+    [SerializeField] private GameObject shootPS;
+
 
     private void Awake()
     {
         playerTr = GameObject.FindGameObjectWithTag("Player").transform;
         StartCoroutine(CannonFollowPlayer(playerTr));
+        StartCoroutine(Fire());
     }
 
-    private void Update()
-    {
-        
-    }
 
 
     IEnumerator CannonFollowPlayer(Transform player)
@@ -42,4 +44,41 @@ public class EnemyShoot : MonoBehaviour
             yield return null;
         }
     }
+
+    IEnumerator Fire()
+    {
+        while (alive)
+        {
+            while (shooting)
+            {
+                Debug.Log("PUUMPUUUUUUUUM");
+                shootPS.SetActive(true);
+                yield return new WaitForSeconds(0.2f);
+                shootPS.SetActive(false);
+                yield return new WaitForSeconds(0.1f);
+            }
+            yield return null;
+
+        }
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("ShootingArea"))
+        {
+            shooting = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("ShootingArea"))
+        {
+            shooting = false;
+            shootPS.SetActive(false);
+            CircleRandomTargetBoid.instance.ChangeTargetPos();
+        }
+    }
 }
+

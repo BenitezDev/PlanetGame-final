@@ -8,6 +8,8 @@ TagManager:
   - Mountain
   - FakeCursor
   - crosshair
+  - NearPlayer
+  - ShootingArea
   layers:
   - Default
   - TransparentFX

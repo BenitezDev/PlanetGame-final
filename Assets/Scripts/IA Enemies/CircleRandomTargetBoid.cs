@@ -4,8 +4,27 @@ using UnityEngine;
 
 public class CircleRandomTargetBoid : MonoBehaviour
 {
+
+    #region SINGLETON PATTERN
+    public static CircleRandomTargetBoid instance;
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
+    #endregion
+
+
     [SerializeField] private float radius = 10;
     [SerializeField] private Transform target;
+
+
 
     private void Start()
     {
@@ -17,9 +36,14 @@ public class CircleRandomTargetBoid : MonoBehaviour
     {
         while (gameObject.activeSelf)
         {
-            target.localPosition = Random.insideUnitSphere*radius;
+            target.localPosition = Random.insideUnitSphere * radius;
             yield return new WaitForSeconds(4f);
         }
+    }
+
+    public void ChangeTargetPos()
+    {
+        target.localPosition = Random.insideUnitSphere * radius;
     }
 
     private void OnDrawGizmos()

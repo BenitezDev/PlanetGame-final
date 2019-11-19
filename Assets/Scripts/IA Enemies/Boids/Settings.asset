@@ -15,7 +15,7 @@ MonoBehaviour:
   minSpeed: 0
   maxSpeed: 80
   perceptionRadius: 100
-  avoidanceRadius: 20
+  avoidanceRadius: 1
   maxSteerForce: 2
   alignWeight: 1
   cohesionWeight: 1
