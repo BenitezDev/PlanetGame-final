@@ -10,6 +10,8 @@ public class EnemyShoot : MonoBehaviour
     bool shooting = false;
 
     [SerializeField] private float firingRate = 0.2f;
+    [Range(0,1)]
+    [SerializeField] private float precisionPercentage = 0.5f;
     [SerializeField] private float damage = 1f;
 
     private float currentTimeFire = 0;
@@ -48,14 +50,15 @@ public class EnemyShoot : MonoBehaviour
     IEnumerator Fire()
     {
         while (alive)
-        {
+        { 
             while (shooting)
             {
-                Debug.Log("PUUMPUUUUUUUUM");
                 shootPS.SetActive(true);
                 yield return new WaitForSeconds(0.2f);
+                if (Random.Range(0.0f, 1.0f) < precisionPercentage)
+                    PlayerHealth.DecrementHealth(damage);
                 shootPS.SetActive(false);
-                yield return new WaitForSeconds(0.1f);
+                
             }
             yield return null;
 

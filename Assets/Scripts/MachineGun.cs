@@ -9,11 +9,12 @@ public class MachineGun : MonoBehaviour
     [SerializeField] private float shootDistance = 500f;
     [SerializeField] private GameObject PShit;
     private float currentTime = 0;
-    [SerializeField] private float damage = 10;
-   public float fireRate = 0.1f;
+
+    [SerializeField] private int damage = 10;
+    public float fireRate = 0.1f;
 
 
-    public PlayerLaser[] lasers;
+    
     private bool leftShoot = true;
 
     public static Transform crosshair;
@@ -29,7 +30,7 @@ public class MachineGun : MonoBehaviour
 
     void Update()
     {
-       
+
         currentTime += Time.deltaTime;
 
         if (!(currentTime >= fireRate)) return;
@@ -37,11 +38,11 @@ public class MachineGun : MonoBehaviour
 
         if
         (
-            Input.GetAxis       ("L2 1") > 0 || Input.GetAxis       ("L2 2") > 0 ||
-            Input.GetButtonDown ("L1 1")     || Input.GetButtonDown ("L2 1")     || 
-            Input.GetButton     ("Fire1")
+            Input.GetAxis("L2 1") > 0 || Input.GetAxis("L2 2") > 0 ||
+            Input.GetButtonDown("L1 1") || Input.GetButtonDown("L2 1") ||
+            Input.GetButton("Fire1")
         )
-        {    
+        {
             Ray ray = new Ray(cam.transform.position, cam.transform.forward);
             RaycastHit hit;
 
@@ -53,16 +54,16 @@ public class MachineGun : MonoBehaviour
             currentTime = 0;
 
             if (Physics.Raycast(ray, out hit, shootDistance))
-            {   
+            {
                 var ps = Instantiate(PShit, hit.point, Quaternion.identity);
-                //Destroy(ps, ps.GetComponent<ParticleSystem>().main.duration);
-                var enemieTarget = hit.transform.GetComponent<StaticEnemie>();
+                
+                var enemieTarget = hit.transform.GetComponent<EnemyHealth>(); ///////////////////////////////////////////////////////////////////////////////
                 if (enemieTarget != null)
                 {
                     enemieTarget.ReciveDamage(damage);
                 }
             }
-            
+
         }
     }
 }
