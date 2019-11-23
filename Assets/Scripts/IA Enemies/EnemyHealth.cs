@@ -7,7 +7,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private int currentHealth;
     [SerializeField] private int MaxHealth;
 
-    [SerializeField] private GameObject explosionPS;
+    public GameObject explosionPS;
 
     private void Awake()
     {
@@ -25,7 +25,8 @@ public class EnemyHealth : MonoBehaviour
         else // Ha muerto el enemigo
         {
             transform.gameObject.SetActive(false);
-            Instantiate(explosionPS, transform.position, Quaternion.identity);
+            var ps = Instantiate(explosionPS, transform.position, Quaternion.identity);
+            Destroy(ps, 3f);
             Invoke("DestroyEnemy", 3f);
             // TODOOOOOOOO
         }

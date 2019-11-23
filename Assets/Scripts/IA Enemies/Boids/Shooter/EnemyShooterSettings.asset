@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: EnemyShooterSettings
   m_EditorClassIdentifier: 
   minSpeed: 0
-  maxSpeed: 80
+  maxSpeed: 60
   perceptionRadius: 100
-  avoidanceRadius: 1
-  maxSteerForce: 2
-  alignWeight: 1
-  cohesionWeight: 1
-  seperateWeight: 2.5
-  targetWeight: 10
+  avoidanceRadius: 10
+  maxSteerForce: 3
+  alignWeight: 0
+  cohesionWeight: 0
+  seperateWeight: -1
+  targetWeight: 5
   obstacleMask:
     serializedVersion: 2
     m_Bits: 512
-  boundsRadius: 100
-  avoidCollisionWeight: 70
-  collisionAvoidDst: 100
+  boundsRadius: 3
+  avoidCollisionWeight: 100
+  collisionAvoidDst: 50

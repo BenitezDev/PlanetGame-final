@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3707847361199233631}
   - component: {fileID: 3577021813954718149}
   - component: {fileID: 3577944501976528211}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Circles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4782,7 +4782,7 @@ GameObject:
   - component: {fileID: 3707638029186060169}
   - component: {fileID: 3592629321185074183}
   - component: {fileID: 3578089029166065237}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ShootFire Flama
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9604,7 +9604,7 @@ GameObject:
   - component: {fileID: 3707989762751312101}
   - component: {fileID: 3577312214892483033}
   - component: {fileID: 3576494900772856317}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shockwave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14346,7 +14346,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!54 &1870389283172650665
+--- !u!54 &6918604536384959449
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14358,7 +14358,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -14409,6 +14409,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyBoid Shooter
       objectReference: {fileID: 0}
+    - target: {fileID: 6196257562571166638, guid: e8173e5286a20c2488aad73819eea320,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4266437371166107204, guid: e8173e5286a20c2488aad73819eea320,
+        type: 3}
+      propertyPath: explosionPS
+      value: 
+      objectReference: {fileID: 6788124476372418, guid: 17ca577ca3a26e847bee5a932b9ce62f,
+        type: 3}
     - target: {fileID: 151949296517406717, guid: e8173e5286a20c2488aad73819eea320,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14464,6 +14475,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6062518777156745983, guid: e8173e5286a20c2488aad73819eea320,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6062518777157232339, guid: e8173e5286a20c2488aad73819eea320,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -14508,6 +14524,51 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6062518777156745969, guid: e8173e5286a20c2488aad73819eea320,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6062518777156745971, guid: e8173e5286a20c2488aad73819eea320,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6062518777156745973, guid: e8173e5286a20c2488aad73819eea320,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6062518777156745975, guid: e8173e5286a20c2488aad73819eea320,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8536400133111390095, guid: e8173e5286a20c2488aad73819eea320,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768920126837767653, guid: e8173e5286a20c2488aad73819eea320,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9079777654160820607, guid: e8173e5286a20c2488aad73819eea320,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772674271617210197, guid: e8173e5286a20c2488aad73819eea320,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8630325819151532479, guid: e8173e5286a20c2488aad73819eea320,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5528012188907523209, guid: e8173e5286a20c2488aad73819eea320, type: 3}
