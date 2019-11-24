@@ -36,12 +36,12 @@ namespace Devdog.General
         }
 
 
-        public int StartTimer(float time, Action callbackWhenTimeIsOver)
+        public int StartTimer(float time, System.Action callbackWhenTimeIsOver)
         {
             return StartTimer(time, null, callbackWhenTimeIsOver);
         }
 
-        public virtual int StartTimer(float time, Action callbackContinous, Action callbackWhenTimeIsOver)
+        public virtual int StartTimer(float time, System.Action callbackContinous, System.Action callbackWhenTimeIsOver)
         {
             _IDCounter++;
             _lookups[_IDCounter] = StartCoroutine(_StartTimer(_IDCounter, time, callbackContinous, callbackWhenTimeIsOver));
@@ -49,7 +49,7 @@ namespace Devdog.General
             return _IDCounter;
         }
 
-        protected virtual IEnumerator _StartTimer(int timerID, float time, Action callbackContinous, Action callbackWhenTimeIsOver)
+        protected virtual IEnumerator _StartTimer(int timerID, float time, System.Action callbackContinous, System.Action callbackWhenTimeIsOver)
         {
             float timer = 0f;
             while (timer < time)

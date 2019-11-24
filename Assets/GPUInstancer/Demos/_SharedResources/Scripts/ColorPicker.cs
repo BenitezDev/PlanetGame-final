@@ -12,14 +12,14 @@ namespace GPUInstancer
         {
             _onValueChange = onValueChange;
         }
-        public void SetOnValueChangeCallback(Action onValueChange)
+        public void SetOnValueChangeCallback(System.Action onValueChange)
         {
             _onValueChangeVoid = onValueChange;
         }
         private Color _color = Color.red;
         private Action<Color> _onValueChange;
-        private Action _onValueChangeVoid;
-        private Action _update;
+        private System.Action _onValueChangeVoid;
+        private System.Action _update;
 
         private static void RGBToHSV(Color color, out float h, out float s, out float v)
         {
@@ -97,7 +97,7 @@ namespace GPUInstancer
             var hueSz = GetWidgetSize(hueGO);
             var satvalTex = new Texture2D(2, 2);
             satvalGO.GetComponent<Image>().sprite = Sprite.Create(satvalTex, new Rect(0.5f, 0.5f, 1, 1), new Vector2(0.5f, 0.5f));
-            Action resetSatValTexture = () => {
+            System.Action resetSatValTexture = () => {
                 for (int j = 0; j < 2; j++)
                 {
                     for (int i = 0; i < 2; i++)
@@ -110,14 +110,14 @@ namespace GPUInstancer
             var satvalSz = GetWidgetSize(satvalGO);
             float Hue, Saturation, Value;
             RGBToHSV(inputColor, out Hue, out Saturation, out Value);
-            Action applyHue = () => {
+            System.Action applyHue = () => {
                 var i0 = Mathf.Clamp((int)Hue, 0, 5);
                 var i1 = (i0 + 1) % 6;
                 var resultColor = Color.Lerp(hueColors[i0], hueColors[i1], Hue - i0);
                 satvalColors[3] = resultColor;
                 resetSatValTexture();
             };
-            Action applySaturationValue = () => {
+            System.Action applySaturationValue = () => {
                 var sv = new Vector2(Saturation, Value);
                 var isv = new Vector2(1 - sv.x, 1 - sv.y);
                 var c0 = isv.x * isv.y * satvalColors[0];
@@ -127,32 +127,32 @@ namespace GPUInstancer
                 var resultColor = c0 + c1 + c2 + c3;
                 var resImg = result.GetComponent<Image>();
                 resImg.color = resultColor;
-                if (_color != resultColor)
+                if (this._color != resultColor)
                 {
-                    if (_onValueChange != null)
-                        _onValueChange(resultColor);
-                    if (_onValueChangeVoid != null)
-                        _onValueChangeVoid();
-                    _color = resultColor;
+                    if (this._onValueChange != null)
+                        this._onValueChange(resultColor);
+                    if (this._onValueChangeVoid != null)
+                        this._onValueChangeVoid();
+                    this._color = resultColor;
                 }
             };
             applyHue();
             applySaturationValue();
             satvalKnob.transform.localPosition = new Vector2(Saturation * satvalSz.x, Value * satvalSz.y);
             hueKnob.transform.localPosition = new Vector2(hueKnob.transform.localPosition.x, Hue / 6 * satvalSz.y);
-            Action dragH = null;
-            Action dragSV = null;
-            Action idle = () => {
+            System.Action dragH = null;
+            System.Action dragSV = null;
+            System.Action idle = () => {
                 if (Input.GetMouseButtonDown(0))
                 {
                     Vector2 mp;
                     if (GetLocalMouse(hueGO, out mp))
                     {
-                        _update = dragH;
+                        this._update = dragH;
                     }
                     else if (GetLocalMouse(satvalGO, out mp))
                     {
-                        _update = dragSV;
+                        this._update = dragSV;
                     }
                 }
             };

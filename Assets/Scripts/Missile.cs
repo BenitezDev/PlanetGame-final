@@ -57,7 +57,7 @@ public class Missile : MonoBehaviour
 
             makeShake();
             Instantiate(explosion, collision.GetContact(0).point, Quaternion.identity);
-            PlayerHealth.DecrementHealth(10);
+            PlayerHealth.DecrementHealth(10, Enemy.Rocket);
 
 
 

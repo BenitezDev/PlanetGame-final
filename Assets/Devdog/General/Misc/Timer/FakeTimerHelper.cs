@@ -21,12 +21,12 @@ namespace Devdog.General
             
         }
 
-        public virtual int StartTimer(float time, Action callback)
+        public virtual int StartTimer(float time, System.Action callback)
         {
             return StartTimer(time, null, callback);
         }
 
-        public virtual int StartTimer(float time, Action callbackContinous, Action callback)
+        public virtual int StartTimer(float time, System.Action callbackContinous, System.Action callback)
         {
             if (callbackContinous != null)
             {

@@ -15,18 +15,30 @@ public class BoidManagerImmolate : MonoBehaviour {
     public Transform followTr;
 
     void Start () {
-        boids = FindObjectsOfType<BoidImmolate> ();
-        //var player = GameObject.FindGameObjectWithTag("Player").transform;
+        //boids = FindObjectsOfType<BoidImmolate> ();
+        ////var player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        foreach (BoidImmolate b in boids) {
-            //b.Initialize (settings, player);
-            b.Initialize(settings, followTr);
-        }
+        //foreach (BoidImmolate b in boids) {
+        //    //b.Initialize (settings, player);
+        //    b.Initialize(settings, followTr);
+        //}
 
     }
 
+    public void CreateBoids(List<BoidImmolate> _boids)
+    {
+        boids = _boids.ToArray();
+        foreach (BoidImmolate b in boids)
+        {
+            b.Initialize(settings, followTr);
+        }
+    }
+
+
     void Update () {
-        if (boids != null) {
+
+        if (boids != null)
+        {
 
             int numBoids = boids.Length;
             var boidData = new BoidData[numBoids];
@@ -36,18 +48,18 @@ public class BoidManagerImmolate : MonoBehaviour {
                 boidData[i].direction = boids[i].forward;
             }
 
-            var boidBuffer = new ComputeBuffer (numBoids, BoidData.Size);
-            boidBuffer.SetData (boidData);
+            //var boidBuffer = new ComputeBuffer (numBoids, BoidData.Size);
+            //boidBuffer.SetData (boidData);
 
-            compute.SetBuffer (0, "boids", boidBuffer);
-            compute.SetInt ("numBoids", boids.Length);
-            compute.SetFloat ("viewRadius", settings.perceptionRadius);
-            compute.SetFloat ("avoidRadius", settings.avoidanceRadius);
+            //compute.SetBuffer (0, "boids", boidBuffer);
+            //compute.SetInt ("numBoids", boids.Length);
+            //compute.SetFloat ("viewRadius", settings.perceptionRadius);
+            //compute.SetFloat ("avoidRadius", settings.avoidanceRadius);
 
-            int threadGroups = Mathf.CeilToInt (numBoids / (float) threadGroupSize);
-            compute.Dispatch (0, threadGroups, 1, 1);
+            //int threadGroups = Mathf.CeilToInt (numBoids / (float) threadGroupSize);
+            //compute.Dispatch (0, threadGroups, 1, 1);
 
-            boidBuffer.GetData (boidData);
+            //boidBuffer.GetData (boidData);
 
             for (int i = 0; i < boids.Length; i++) {
                 boids[i].avgFlockHeading = boidData[i].flockHeading;
@@ -58,7 +70,7 @@ public class BoidManagerImmolate : MonoBehaviour {
                 boids[i].UpdateBoid ();
             }
 
-            boidBuffer.Release ();
+            //boidBuffer.Release ();
         }
     }
 

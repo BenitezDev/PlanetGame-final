@@ -59,7 +59,7 @@ namespace GPUInstancer
         public int maxThreads = 3;
         public readonly List<Thread> activeThreads = new List<Thread>();
         public readonly Queue<GPUIThreadData> threadStartQueue = new Queue<GPUIThreadData>();
-        public readonly Queue<Action> threadQueue = new Queue<Action>();
+        public readonly Queue<System.Action> threadQueue = new Queue<System.Action>();
 
         // Tree variables
         public static int lastTreePositionUpdate;
@@ -184,7 +184,7 @@ namespace GPUInstancer
             }
             if (threadQueue.Count > 0)
             {
-                Action action = threadQueue.Dequeue();
+                System.Action action = this.threadQueue.Dequeue();
                 if (action != null)
                     action.Invoke();
             }

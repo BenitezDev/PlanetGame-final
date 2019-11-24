@@ -9,7 +9,7 @@ namespace Devdog.General
     {
 //        void StopAllTimers();
         void StopTimer(int id);
-        int StartTimer(float time, Action callbackContinous, Action callbackWhenTimeIsOver);
-        int StartTimer(float time, Action callbackWhenTimeIsOver);
+        int StartTimer(float time, System.Action callbackContinous, System.Action callbackWhenTimeIsOver);
+        int StartTimer(float time, System.Action callbackWhenTimeIsOver);
     }
 }

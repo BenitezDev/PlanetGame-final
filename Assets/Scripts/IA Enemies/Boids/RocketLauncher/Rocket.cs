@@ -46,6 +46,7 @@ public class Rocket : MonoBehaviour
         Invoke("DestroyMissile", maxTime);
         yield return new WaitForSeconds(1f);
         psTrail.SetActive(true);
+        if(transform != null || !transform.gameObject.activeInHierarchy)
         StartCoroutine(MoveToPlayer());
     }
    
@@ -89,7 +90,7 @@ public class Rocket : MonoBehaviour
             // TODOOOO
 
 
-            PlayerHealth.DecrementHealth(damage);
+            PlayerHealth.DecrementHealth(damage, Enemy.Rocket);
         }
         
     }

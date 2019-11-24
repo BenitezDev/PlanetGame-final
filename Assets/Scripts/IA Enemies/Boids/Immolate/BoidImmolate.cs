@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BoidImmolate : MonoBehaviour
 {
+    Enemy enemyType = Enemy.Immolate;
 
     BoidSettingsImmolate settings;
 
@@ -252,23 +253,27 @@ public class BoidImmolate : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("inmolacion realizad!");
-
-            transform.gameObject.SetActive(false);
-            Instantiate(explosionPS, transform.position, Quaternion.identity);
-            Invoke("DestroyEnemy", 3f);
+            PlayerHealth.DecrementHealth(inmolationDamge, Enemy.Immolate);
+            ThisBoidIsDead();
             // TODOOOOOOOO
 
-            PlayerHealth.DecrementHealth(inmolationDamge);
         }
         else if(collision.gameObject.CompareTag("Mountain"))
         {
-            transform.gameObject.SetActive(false);
-            Instantiate(explosionPS, transform.position, Quaternion.identity);
-            Invoke("DestroyEnemy", 3f);
+            ThisBoidIsDead();
             // TODOOOOOOOO
         }
     }
+
+    public void ThisBoidIsDead()
+    {
+        RoundManager.Instance.DecreaseActiveEnemies();
+        transform.gameObject.SetActive(false);
+        var ps = Instantiate(explosionPS, transform.position, Quaternion.identity);
+        Destroy(ps, 3f);
+        Invoke("DestroyEnemy", 3f);
+    }
+
 
     private void DestroyEnemy()
     {

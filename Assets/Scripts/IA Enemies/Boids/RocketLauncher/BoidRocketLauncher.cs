@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoidRocketLauncher : MonoBehaviour {
+public class BoidRocketLauncher : MonoBehaviour
+{
+
+    [SerializeField] int baseDamageCollision = 10;
+
+    Enemy enemyType = Enemy.Rocket;
 
     public BoidSettingsRocketLauncher settings;
 
@@ -183,27 +188,28 @@ public class BoidRocketLauncher : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("inmolacion realizad!");
-
-            transform.gameObject.SetActive(false);
-            var ps = Instantiate(explosionPS, transform.position, Quaternion.identity);
-            Destroy(ps, 3f);
-            Invoke("DestroyEnemy", 3f);
+            PlayerHealth.DecrementHealth(baseDamageCollision, Enemy.Rocket);
+            ThisBoidIsDead();
             // TODOOOOOOOO
         }
         else if (collision.gameObject.CompareTag("Mountain"))
         {
-            Debug.Log("Se la ha pegado el rocketLauncher con " + collision.gameObject.name );
-
-            transform.gameObject.SetActive(false);
-            var ps = Instantiate(explosionPS, transform.position, Quaternion.identity);
-            Destroy(ps, 3f);
-            Invoke("DestroyEnemy", 3f);
+            ThisBoidIsDead();
             // TODOOOO
         }
 
         Debug.Log(collision.gameObject.name);
     }
+
+    public void ThisBoidIsDead()
+    {
+        RoundManager.Instance.DecreaseActiveEnemies();
+        transform.gameObject.SetActive(false);
+        var ps = Instantiate(explosionPS, transform.position, Quaternion.identity);
+        Destroy(ps, 3f);
+        Invoke("DestroyEnemy", 3f);
+    }
+
 
     private void DestroyEnemy()
     {

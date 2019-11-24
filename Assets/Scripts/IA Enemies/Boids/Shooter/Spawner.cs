@@ -12,17 +12,31 @@ public class Spawner : MonoBehaviour {
     public Color colour;
     public GizmoType showSpawnRegion;
 
-    void Awake () {
-        for (int i = 0; i < spawnCount; i++) {
+    public List<Boid> boids;
+
+    void Awake ()
+    {
+        //SpawnEnemies(spawnCount);
+    }
+
+    public void SpawnEnemies(int enemyCount)
+    {
+        if (enemyCount <= 0) return;
+        boids.Clear();
+        for (int i = 0; i < enemyCount; i++)
+        {
             Vector3 pos = transform.position + Random.insideUnitSphere * spawnRadius;
-            Boid boid = Instantiate (prefab);
+            Boid boid = Instantiate(prefab);
             boid.transform.position = pos;
             boid.transform.forward = Random.insideUnitSphere;
 
-            boid.SetColour (colour);
-        }
-    }
+            boid.SetColour(colour);
 
+            boids.Add(boid);
+        }
+        
+        GetComponent<BoidManager>().CreateBoids(boids);
+    }
     private void OnDrawGizmos () {
         if (showSpawnRegion == GizmoType.Always) {
             DrawGizmos ();

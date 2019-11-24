@@ -1020,7 +1020,7 @@ namespace GPUInstancer
 
         private static IEnumerator SetInstanceDataForDetailCells(GPUInstancerSpatialPartitioningData<GPUInstancerCell> spData, List<GPUInstancerPrototype> prototypeList,
             int detailMapSize, int heightMapSize, int detailResolution, int heightmapResolution, Vector3 terrainSize, ComputeBuffer counterBuffer, int[] counterData,
-            GPUInstancerTerrainSettings terrainSettings, Action callback)
+            GPUInstancerTerrainSettings terrainSettings, System.Action callback)
         {
             int totalCreated = 0;
             foreach (GPUInstancerDetailCell cell in spData.GetCellList())

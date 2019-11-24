@@ -101,7 +101,7 @@ public class StaticEnemie : MonoBehaviour
         if (Random.Range(0, 2) == 0)
         {
             // sistema de particulas de disparo
-            PlayerHealth.DecrementHealth(damage);
+            //PlayerHealth.DecrementHealth(damage);
             print(("pum " + PlayerHealth.health));
         }
 

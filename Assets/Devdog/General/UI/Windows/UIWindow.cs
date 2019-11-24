@@ -17,12 +17,12 @@ namespace Devdog.General.UI
         /// <summary>
         /// Event is fired when the window is hidden.
         /// </summary>
-        public event Action OnHide;
+        public event System.Action OnHide;
 
         /// <summary>
         /// Event is fired when the window becomes visible.
         /// </summary>
-        public event Action OnShow;
+        public event System.Action OnShow;
 
 
 
@@ -252,7 +252,7 @@ namespace Devdog.General.UI
             }
         }
 
-        private void PlayAnimation(MotionInfo clip, int hash, Action callback)
+        private void PlayAnimation(MotionInfo clip, int hash, System.Action callback)
         {
             if (clip.motion != null)
             {
@@ -401,7 +401,7 @@ namespace Devdog.General.UI
         /// <summary>
         /// Hides object after animation is completed.
         /// </summary>
-        protected IEnumerator _PlayAnimationAndDisableAnimator(float waitTime, int hash, Action callback)
+        protected IEnumerator _PlayAnimationAndDisableAnimator(float waitTime, int hash, System.Action callback)
         {
             yield return null; // Needed for some reason, Unity bug??
 

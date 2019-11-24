@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public static float health = 100f;
+    public static int health = 100;
     public static GameObject panelDemuerte;
     public static GameObject UI;
 
@@ -17,7 +17,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Awake()
     {
-        health = 100f;
+        health = 100;
 
         UI = GameObject.Find("UI");
         panelDemuerte = GameObject.Find("Has muerto");
@@ -32,16 +32,20 @@ public class PlayerHealth : MonoBehaviour
 
 
 
-    public static void DecrementHealth(float dmg)
+    public static void DecrementHealth(int dmg, Enemy enemy)
     {
+        
         var aux = health - dmg;
 
         if (aux >= 0)
         {
             health = aux;
+            RoundManager.Instance.rounds[RoundManager.Instance.RoundIndex].damages[(int)enemy] += dmg;
         }
         else
         {
+            RoundManager.Instance.rounds[RoundManager.Instance.RoundIndex].damages[(int)enemy] += health;
+
             // has muerto:
             UI.SetActive(false);
             panelDemuerte.SetActive(true);
@@ -53,6 +57,15 @@ public class PlayerHealth : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.LoadScene(0);
             //new PlayerHealth().CreateExplosion();
 
+        }
+    }
+
+    public static IEnumerator RegenerateLife()
+    {
+        while(health < 100)
+        {
+            health++;
+            yield return new WaitForSeconds(0.05f);
         }
     }
   

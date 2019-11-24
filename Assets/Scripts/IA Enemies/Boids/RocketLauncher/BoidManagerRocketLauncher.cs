@@ -25,6 +25,15 @@ public class BoidManagerRocketLauncher : MonoBehaviour {
         
     }
 
+    public void CreateBoids(List<BoidRocketLauncher> _boids)
+    {
+        boids = _boids.ToArray();
+        for (int i = 0; i < boids.Length; ++i)
+        {
+            boids[i].Initialize(settings, i % 2 == 0 ? followTr[0] : followTr[1], nearPlayer);
+        }
+    }
+
     void Update () {
         if (boids != null) {
 
@@ -36,18 +45,18 @@ public class BoidManagerRocketLauncher : MonoBehaviour {
                 boidData[i].direction = boids[i].forward;
             }
 
-            var boidBuffer = new ComputeBuffer (numBoids, BoidData.Size);
-            boidBuffer.SetData (boidData);
+            //var boidBuffer = new ComputeBuffer (numBoids, BoidData.Size);
+            //boidBuffer.SetData (boidData);
 
-            compute.SetBuffer (0, "boids", boidBuffer);
-            compute.SetInt ("numBoids", boids.Length);
-            compute.SetFloat ("viewRadius", settings.perceptionRadius);
-            compute.SetFloat ("avoidRadius", settings.avoidanceRadius);
+            //compute.SetBuffer (0, "boids", boidBuffer);
+            //compute.SetInt ("numBoids", boids.Length);
+            //compute.SetFloat ("viewRadius", settings.perceptionRadius);
+            //compute.SetFloat ("avoidRadius", settings.avoidanceRadius);
 
-            int threadGroups = Mathf.CeilToInt (numBoids / (float) threadGroupSize);
-            compute.Dispatch (0, threadGroups, 1, 1);
+            //int threadGroups = Mathf.CeilToInt (numBoids / (float) threadGroupSize);
+            //compute.Dispatch (0, threadGroups, 1, 1);
 
-            boidBuffer.GetData (boidData);
+            //boidBuffer.GetData (boidData);
 
             for (int i = 0; i < boids.Length; i++) {
                 boids[i].avgFlockHeading = boidData[i].flockHeading;
@@ -58,7 +67,7 @@ public class BoidManagerRocketLauncher : MonoBehaviour {
                 boids[i].UpdateBoid ();
             }
 
-            boidBuffer.Release ();
+            //boidBuffer.Release ();
         }
     }
 

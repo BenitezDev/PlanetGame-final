@@ -12,15 +12,29 @@ public class SpawnerRocketLauncher : MonoBehaviour {
     public Color colour;
     public GizmoType showSpawnRegion;
 
+    public List<BoidRocketLauncher> boids;
+
     void Awake () {
-        for (int i = 0; i < spawnCount; i++) {
+        
+    }
+
+    public void SpawnEnemies(int enemyCount)
+    {
+        if (enemyCount <= 0) return;
+        boids.Clear();
+        for (int i = 0; i < enemyCount; i++)
+        {
             Vector3 pos = transform.position + Random.insideUnitSphere * spawnRadius;
-            BoidRocketLauncher boid = Instantiate (prefab);
+            BoidRocketLauncher boid = Instantiate(prefab);
             boid.transform.position = pos;
             boid.transform.forward = Random.insideUnitSphere;
 
-            boid.SetColour (colour);
+            boid.SetColour(colour);
+
+            boids.Add(boid);
         }
+        if (enemyCount > 0)
+            GetComponent<BoidManagerRocketLauncher>().CreateBoids(boids);
     }
 
     private void OnDrawGizmos () {
