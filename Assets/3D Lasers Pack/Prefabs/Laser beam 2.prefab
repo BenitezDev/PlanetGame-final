@@ -9752,6 +9752,7 @@ MonoBehaviour:
   MaxLength: 30
   MainTextureLength: 1
   NoiseTextureLength: 1
+  UpdateSaver: 0
 --- !u!1 &1436039344504592
 GameObject:
   m_ObjectHideFlags: 0
@@ -14522,7 +14523,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4964034669757262
 Transform:
   m_ObjectHideFlags: 0
@@ -24028,7 +24029,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4622999731614178
 Transform:
   m_ObjectHideFlags: 0
@@ -28781,7 +28782,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4670692829685898
 Transform:
   m_ObjectHideFlags: 0
@@ -33534,7 +33535,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4761806315519290
 Transform:
   m_ObjectHideFlags: 0
@@ -52547,7 +52548,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4832414619952932
 Transform:
   m_ObjectHideFlags: 0

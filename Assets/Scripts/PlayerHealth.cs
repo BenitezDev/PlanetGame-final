@@ -18,12 +18,14 @@ public class PlayerHealth : MonoBehaviour
     private void Awake()
     {
         health = 100f;
+
         UI = GameObject.Find("UI");
         panelDemuerte = GameObject.Find("Has muerto");
 
-        Time.timeScale = 1;
         UI.SetActive(true);
         panelDemuerte.SetActive(false);
+        Time.timeScale = 1;
+
 
         shipExplote = GetComponent<ShipExplote>();
     }

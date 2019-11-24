@@ -23,11 +23,13 @@ public class EnemyShoot : MonoBehaviour
     [SerializeField] private Transform cannonPivot;
 
     [SerializeField] private GameObject shootPS;
+    CircleRandomTargetBoid circleRandomTarget;
 
 
     private void Awake()
     {
         playerTr = GameObject.FindGameObjectWithTag("Player").transform;
+        circleRandomTarget = GameObject.FindGameObjectWithTag("ShootingArea").GetComponent<CircleRandomTargetBoid>();
         StartCoroutine(CannonFollowPlayer(playerTr));
         StartCoroutine(Fire());
     }
@@ -80,7 +82,8 @@ public class EnemyShoot : MonoBehaviour
         {
             shooting = false;
             shootPS.SetActive(false);
-            CircleRandomTargetBoid.instance.ChangeTargetPos();
+            circleRandomTarget.ChangeTargetPos();
+            //CircleRandomTargetBoid.instance.ChangeTargetPos();
         }
     }
 }

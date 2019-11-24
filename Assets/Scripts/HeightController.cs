@@ -32,7 +32,7 @@ public class HeightController : MonoBehaviour
     {
         minRadio = minRadioPlaneta;
         maxRadio = maxRadioPlaneta;
-        print("Min:"+minRadio+" Max:"+maxRadio);
+        //print("Min:"+minRadio+" Max:"+maxRadio);
     }
 
 

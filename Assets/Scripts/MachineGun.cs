@@ -61,6 +61,12 @@ public class MachineGun : MonoBehaviour
                 if (enemieTarget != null)
                 {
                     enemieTarget.ReciveDamage(damage);
+                    return;
+                }
+                var rocket = hit.transform.GetComponent<Rocket>();
+                if ( rocket != null)
+                {
+                    rocket.ReciveDamage(damage);
                 }
             }
 

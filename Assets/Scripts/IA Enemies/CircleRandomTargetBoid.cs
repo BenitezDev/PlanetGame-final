@@ -5,20 +5,6 @@ using UnityEngine;
 public class CircleRandomTargetBoid : MonoBehaviour
 {
 
-    #region SINGLETON PATTERN
-    public static CircleRandomTargetBoid instance;
-    private void Awake()
-    {
-        if (instance != null)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            instance = this;
-        }
-    }
-    #endregion
 
 
     [SerializeField] private float radius = 10;
@@ -37,7 +23,7 @@ public class CircleRandomTargetBoid : MonoBehaviour
         while (gameObject.activeSelf)
         {
             target.localPosition = Random.insideUnitSphere * radius;
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(Random.Range(3f,4f));
         }
     }
 

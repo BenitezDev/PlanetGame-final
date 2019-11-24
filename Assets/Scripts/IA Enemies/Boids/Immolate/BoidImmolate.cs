@@ -44,6 +44,8 @@ public class BoidImmolate : MonoBehaviour
 
     [SerializeField] bool AllahuAkbar = false; // if true... the inmolation is inminent. RUN!
 
+    [SerializeField] int inmolationDamge = 20;
+
     void Awake()
     {
         renderer = GetComponentInChildren<Renderer>();
@@ -256,7 +258,10 @@ public class BoidImmolate : MonoBehaviour
             Instantiate(explosionPS, transform.position, Quaternion.identity);
             Invoke("DestroyEnemy", 3f);
             // TODOOOOOOOO
-        }else if(collision.gameObject.CompareTag("Mountain"))
+
+            PlayerHealth.DecrementHealth(inmolationDamge);
+        }
+        else if(collision.gameObject.CompareTag("Mountain"))
         {
             transform.gameObject.SetActive(false);
             Instantiate(explosionPS, transform.position, Quaternion.identity);
