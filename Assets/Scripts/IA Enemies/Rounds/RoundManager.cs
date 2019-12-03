@@ -112,6 +112,7 @@ public class RoundManager : Singleton<RoundManager>
         if(roundIndex != 0)
         {
             text.text = "RONDA COMPLETADA!";
+            SaveSystem.SaveBandit(Bandit.Instance);
         }
         yield return new WaitForSeconds(1.5f);
         if (roundIndex != 0)

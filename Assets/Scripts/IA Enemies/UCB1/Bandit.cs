@@ -24,14 +24,15 @@ public enum Enemy
 public class Bandit : Singleton<Bandit>
 {
 
-    [SerializeField] bool init;
-    [SerializeField] int totalActions;
-    [SerializeField] int[] count;
-    [SerializeField] float[] score;// Para cada jugada, si el jugador ha ganado (-1) o ha perdido (-1). Cantidad de daño que ha hecho
-    [SerializeField] public float[] UCB1scores; // Cálculo intermedio de cada acción de función a maximizar
-    [SerializeField] int numActions;
-    [SerializeField] Action lastAction;
-    [SerializeField] int lastStrategy;
+    public bool init = false;
+    public int totalActions;
+    public int[] count;
+    public float[] score;// Para cada jugada, si el jugador ha ganado (-1) o ha perdido (-1). Cantidad de daño que ha hecho
+    public float[] UCB1scores; // Cálculo intermedio de cada acción de función a maximizar
+    public int numActions;
+    public Action lastAction;
+
+    public bool LoadedFromfile = false;
 
     private void Awake()
     {
@@ -40,8 +41,19 @@ public class Bandit : Singleton<Bandit>
 
     public void InitUCB1()
     {
-        if (init)
-            return;
+
+        //if (init)
+        //{
+        //    LoadBandid();
+        //    return;
+        //}
+
+        LoadBandid();
+
+        if(!LoadedFromfile) return;
+        
+
+
 
         totalActions = 0;
         numActions = System.Enum.GetNames(typeof(Action)).Length;
@@ -123,5 +135,30 @@ public class Bandit : Singleton<Bandit>
         totalActions++;
     }
 
+    public Bandit GetBandit()
+    {
+        return this;
+    }
+    public void SaveBandid()
+    {
+        SaveSystem.SaveBandit(this);
+    }
 
+    public void LoadBandid()
+    {
+        BandidData data =  SaveSystem.LoadBandid();
+        if (data != null)
+        {
+
+            init = data.init;
+            totalActions = data.totalActions;
+            count = data.count;
+            score = data.score;
+            UCB1scores = data.UCB1scores;
+            numActions = data.numActions;
+
+            LoadedFromfile = true;
+        }
+        LoadedFromfile = false;
+    }
 }
