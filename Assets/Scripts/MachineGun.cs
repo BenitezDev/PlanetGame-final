@@ -25,6 +25,8 @@ public class MachineGun : MonoBehaviour
     {
         cam = Camera.main;
         crosshair = GameObject.FindGameObjectWithTag("crosshair").transform;
+
+        //PoolManager.Instance.warmPool(PShit,5);
     }
 
 
@@ -38,7 +40,7 @@ public class MachineGun : MonoBehaviour
 
         if
         (
-            Input.GetAxis("L2 1") > 0 || Input.GetAxis("L2 2") > 0 ||
+            Input.GetAxis("L2 1") > 0   || Input.GetAxis("L2 2") > 0 ||
             Input.GetButtonDown("L1 1") || Input.GetButtonDown("L2 1") ||
             Input.GetButton("Fire1")
         )
@@ -55,7 +57,9 @@ public class MachineGun : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, shootDistance))
             {
-                var ps = Instantiate(PShit, hit.point, Quaternion.identity);
+
+                //var ps = Instantiate(PShit, hit.point, Quaternion.identity);
+                PoolManager.SpawnObject(PShit, hit.point, Quaternion.identity);
                 
                 var enemieTarget = hit.transform.GetComponent<EnemyHealth>(); ///////////////////////////////////////////////////////////////////////////////
                 if (enemieTarget != null)
