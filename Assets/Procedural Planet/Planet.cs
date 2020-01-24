@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Planet : MonoBehaviour
 {
+    [SerializeField] private Material planetMaterial;
+
 
     [Range(2, 256)]
     public int resolution = 10;
@@ -68,7 +70,33 @@ public class Planet : MonoBehaviour
     {
         Initialize();
         GenerateMesh();
+
+        CombineMeshes();
+
         GenerateColours();
+
+        transform.gameObject.SetActive(true);
+    }
+
+    private void CombineMeshes()
+    {
+        MeshFilter[] meshFilters = GetComponentsInChildren<MeshFilter>();
+        CombineInstance[] combine = new CombineInstance[meshFilters.Length];
+
+        int i = 0;
+        while (i < meshFilters.Length)
+        {
+            combine[i].mesh = meshFilters[i].sharedMesh;
+            combine[i].transform = meshFilters[i].transform.localToWorldMatrix;
+            meshFilters[i].gameObject.SetActive(false);
+
+            i++;
+        }
+        transform.GetComponent<MeshFilter>().mesh = new Mesh();
+        transform.GetComponent<MeshFilter>().mesh.CombineMeshes(combine);
+
+        transform.GetComponent<MeshRenderer>().material = planetMaterial;
+        //transform.gameObject.SetActive(true);
     }
 
     public void OnShapeSettingsUpdated()

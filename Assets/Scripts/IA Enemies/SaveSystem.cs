@@ -9,7 +9,9 @@ public static class SaveSystem
     public static void SaveBandit(Bandit bandit)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/bandit.txt";
+
+        //string path = Application.persistentDataPath + "/bandit.txt";
+        string path = Application.streamingAssetsPath + "/bandit.txt";
 
         FileStream stream = new FileStream(path, FileMode.Create);
 
@@ -21,7 +23,9 @@ public static class SaveSystem
 
     public static BandidData LoadBandid()
     {
-        string path = Application.persistentDataPath + "/bandit.txt";
+        //string path = Application.persistentDataPath + "/bandit.txt";
+        string path = Application.streamingAssetsPath + "/bandit.txt";
+
         Debug.Log(path);
         if (File.Exists(path))
         {

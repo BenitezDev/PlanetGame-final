@@ -48,9 +48,9 @@ public class Bandit : Singleton<Bandit>
         //    return;
         //}
 
-        LoadBandid();
+        //LoadBandid();
 
-        if(!LoadedFromfile) return;
+        if(LoadBandid()) return;
         
 
 
@@ -144,7 +144,7 @@ public class Bandit : Singleton<Bandit>
         SaveSystem.SaveBandit(this);
     }
 
-    public void LoadBandid()
+    public bool LoadBandid()
     {
         BandidData data =  SaveSystem.LoadBandid();
         if (data != null)
@@ -158,7 +158,9 @@ public class Bandit : Singleton<Bandit>
             numActions = data.numActions;
 
             LoadedFromfile = true;
+            return true;
         }
         LoadedFromfile = false;
+        return false;
     }
 }
